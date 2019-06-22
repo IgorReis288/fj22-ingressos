@@ -149,5 +149,11 @@
             </plugin>
         </plugins>
     </build>
+    <developers>
+    	<developer>
+    		<name>Igor Reis</name>
+    		<email>sinistro.oliveira@gmail.com</email>
+    	</developer>
+    </developers>
 
 </project>
