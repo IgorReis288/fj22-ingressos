@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib tagdir="/WEB-INF/tags/" prefix="ingresso" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib tagdir="/WEB-INF/tags/" prefix="ingresso"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <ingresso:template>
-    <jsp:body>
+	<jsp:body>
 		<div class=" col-md-6 col-md-offset-3">
-        <c:set var="bindingResult" value="${requestScope['org.springframework.validation.BindingResult.sessaoForm']}"/>
+        <c:set var="bindingResult"
+				value="${requestScope['org.springframework.validation.BindingResult.sessaoForm']}" />
 
         <h3>Nova sessão para sala: ${sala.nome}</h3>
 
@@ -16,8 +17,12 @@
 
             <div class="form-group">
                 <label for="horario">Horario:</label>
-                <input id="horario" type="text" name="horario" class="form-control" value="${form.horario}">
-                <c:forEach items="${bindingResult.getFieldErrors('horario')}" var="error">
+                <input id="horario" type="text" name="horario"
+						class="form-control" value="${form.horario}"
+						data-inputmask-alias="datetime" data-inputmask-inputformat="hh:MM"
+						data-inputmask-placeholder="hh:mm">
+                <c:forEach
+						items="${bindingResult.getFieldErrors('horario')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>
                 </c:forEach>
 
@@ -28,10 +33,12 @@
                 <select id="filme" name="filmeId" class="form-control">
                     <option value="">Selecione um Filme</option>
                     <c:forEach var="filme" items="${filmes}">
-                        <option value="${filme.id}" ${filme.id.equals(form.filmeId)? "selected": ""}>${filme.nome}</option>
+                        <option value="${filme.id}"
+								${filme.id.equals(form.filmeId)? "selected": ""}>${filme.nome}</option>
                     </c:forEach>
                 </select>
-                <c:forEach items="${bindingResult.getFieldErrors('filmeId')}" var="error">
+                <c:forEach
+						items="${bindingResult.getFieldErrors('filmeId')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>
                 </c:forEach>
             </div>
@@ -40,5 +47,8 @@
             <button type="submit" class="btn btn-primary">Gravar</button>
         </form>
         </div>
+        <script>
+									$(":input").inputmask("00:00");
+								</script>
     </jsp:body>
 </ingresso:template>
