@@ -19,8 +19,7 @@
                 <label for="horario">Horario:</label>
                 <input id="horario" type="text" name="horario"
 						class="form-control" value="${form.horario}"
-						data-inputmask-alias="datetime" data-inputmask-inputformat="hh:MM"
-						data-inputmask-placeholder="hh:mm">
+						placeholder="ex.: HH:mm">
                 <c:forEach
 						items="${bindingResult.getFieldErrors('horario')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>
@@ -47,8 +46,5 @@
             <button type="submit" class="btn btn-primary">Gravar</button>
         </form>
         </div>
-        <script>
-									$(":input").inputmask("00:00");
-								</script>
     </jsp:body>
 </ingresso:template>
